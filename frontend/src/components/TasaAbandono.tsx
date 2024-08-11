@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 /**Feature1:Distinción de estudiantes propensos a abandonar la asignatura
  * Como docente
   Quiero identificar automáticamente aquellos estudiantes con posible tasa de abandono

@@ -17,8 +17,8 @@ Sección de la feature abordada en esta pantalla:
 Visualización del seguimiento del sílabo de la asignatura
 */
 
-import React, { useEffect, useState } from 'react';
-import { Line } from 'react-chartjs-2';
+import React, { useEffect, useState } from "react";
+import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -29,12 +29,15 @@ import {
   Tooltip,
   Legend,
   ChartOptions,
-  ChartData
-} from 'chart.js';
-import '../styles/components/SeguimientoSilabo.css';
-import { useContextoGlobal } from '../ContextoGlobal';
-import { obtenerCronogramas, obtenerTemasCronograma } from '../services/Cronograma';
-import { TemaCronograma } from '../types/Cronograma';
+  ChartData,
+} from "chart.js";
+import "../styles/components/SeguimientoSilabo.css";
+import { useContextoGlobal } from "../ContextoGlobal";
+import {
+  obtenerCronogramas,
+  obtenerTemasCronograma,
+} from "../services/Cronograma";
+import { TemaCronograma } from "../types/Cronograma";
 
 ChartJS.register(
   CategoryScale,
@@ -46,28 +49,28 @@ ChartJS.register(
   Legend
 );
 
-const options: ChartOptions<'line'> = {
+const options: ChartOptions<"line"> = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'top',
+      position: "top",
     },
     title: {
       display: true,
-      text: 'Seguimiento del sílabo',
+      text: "Seguimiento del sílabo",
     },
   },
   scales: {
     x: {
       title: {
         display: true,
-        text: 'Temas',
+        text: "Temas",
       },
     },
     y: {
       title: {
         display: true,
-        text: 'Tiempo en semanas',
+        text: "Tiempo en semanas",
       },
       ticks: {
         stepSize: 1,
@@ -76,37 +79,56 @@ const options: ChartOptions<'line'> = {
   },
 };
 
-const calculateWeeksBetweenDates = (startDate: string, endDate: string): number => {
+const calculateWeeksBetweenDates = (
+  startDate: string,
+  endDate: string
+): number => {
   const start = new Date(startDate);
   const end = new Date(endDate);
   const diffTime = Math.abs(end.getTime() - start.getTime());
   return Math.ceil(diffTime / (1000 * 60 * 60 * 24 * 7));
 };
 
-function SeguimientoSilabo({ id, handlePageChange, showNotification }: { id: string, handlePageChange: (page: string) => void, showNotification: boolean }) {
+function SeguimientoSilabo({
+  id,
+  handlePageChange,
+  showNotification,
+}: {
+  id: string;
+  handlePageChange: (page: string) => void;
+  showNotification: boolean;
+}) {
   const { asignatura } = useContextoGlobal();
-  const [data, setData] = useState<ChartData<'line'>>({ labels: [], datasets: [] });
-  const [estado, setEstado] = useState<string>('normal');
+  const [data, setData] = useState<ChartData<"line">>({
+    labels: [],
+    datasets: [],
+  });
+  const [estado, setEstado] = useState<string>("normal");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const cronogramas = await obtenerCronogramas();
-        const cronograma = cronogramas.find(c => c.asignatura === asignatura);
+        const cronograma = cronogramas.find((c) => c.asignatura === asignatura);
         if (cronograma) {
-          let estadoGeneral = 'normal';
+          let estadoGeneral = "normal";
           const temas = await obtenerTemasCronograma(cronograma.id_cronograma);
 
-          const labels = temas.map(t => t.descripcion);
-          const proyeccionIdeal = temas.map(t => t.semana_finalizacion_relativa_a_inicio);
+          const labels = temas.map((t) => t.descripcion);
+          const proyeccionIdeal = temas.map(
+            (t) => t.semana_finalizacion_relativa_a_inicio
+          );
           const avanceReal = temas
-            .filter(t => t.completado && t.fecha_completado !== null)
-            .map(t => {
-              const weeks = calculateWeeksBetweenDates(cronograma.fecha_inicio, t.fecha_completado!);
+            .filter((t) => t.completado && t.fecha_completado !== null)
+            .map((t) => {
+              const weeks = calculateWeeksBetweenDates(
+                cronograma.fecha_inicio,
+                t.fecha_completado!
+              );
               if (weeks < t.semana_finalizacion_relativa_a_inicio) {
-                estadoGeneral = 'adelantado';
+                estadoGeneral = "adelantado";
               } else if (weeks > t.semana_finalizacion_relativa_a_inicio) {
-                estadoGeneral = 'atrasado';
+                estadoGeneral = "atrasado";
               }
               return weeks;
             });
@@ -117,17 +139,17 @@ function SeguimientoSilabo({ id, handlePageChange, showNotification }: { id: str
             labels,
             datasets: [
               {
-                label: 'Proyección ideal',
+                label: "Proyección ideal",
                 data: proyeccionIdeal,
-                borderColor: 'rgba(75,192,192,1)',
-                backgroundColor: 'rgba(75,192,192,0.2)',
+                borderColor: "rgba(75,192,192,1)",
+                backgroundColor: "rgba(75,192,192,0.2)",
                 tension: 0.4,
               },
               {
-                label: 'Avance real',
+                label: "Avance real",
                 data: avanceReal,
-                borderColor: 'rgba(192,75,192,1)',
-                backgroundColor: 'rgba(192,75,192,0.2)',
+                borderColor: "rgba(192,75,192,1)",
+                backgroundColor: "rgba(192,75,192,0.2)",
                 tension: 0.4,
               },
             ],
@@ -142,12 +164,13 @@ function SeguimientoSilabo({ id, handlePageChange, showNotification }: { id: str
   }, [asignatura]);
 
   const handleRegisterClick = () => {
-    handlePageChange('RegistroAvance');
+    handlePageChange("RegistroAvance");
   };
 
   const mensajeEstado = {
-    atrasado: "Parece que estás un poco por detrás de lo esperado, recomendamos apresurar el paso con los siguientes temas",
-    adelantado: "Todo está en orden, sigue así"
+    atrasado:
+      "Parece que estás un poco por detrás de lo esperado, recomendamos apresurar el paso con los siguientes temas",
+    adelantado: "Todo está en orden, sigue así",
   };
 
   return (
