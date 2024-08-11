@@ -1,0 +1,63 @@
+.porcentaje-actual-progress-bar {
+  width: 15em; /* Cambia esto al ancho deseado */
+  height: 20px; /* Puedes ajustar la altura también */
+}
+
+.tasa-abandono-info-contenedor {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 6em;
+  padding-right: 6em;
+  padding-top: 4em;
+}
+
+.tasa-abandono-contenedor {
+  flex: 85%;
+  border-radius: 15px;
+  box-shadow: 0px 1px 1px #a45bf3;
+  background-color: #f8f9fa;
+}
+
+.lista-estudiantes {
+  list-style-type: none;
+  margin-bottom: 10px;
+  overflow-y: auto;
+  padding-left: 6em;
+  padding-right: 6em;
+  padding-top: 2em;
+  padding-bottom: 4em;
+}
+
+.estudiante-item {
+  margin-bottom: 5px;
+  max-height: 400px;
+  padding: 5px 0;
+}
+
+.porcentaje-actual-progress-bar {
+  margin-top: 5px;
+}
+
+.notificar-button {
+  margin-top: 10px;
+}
+
+.estudiantes-abandono-contenedor {
+  display: flex;
+}
+
+.seleccion-mes-ckeckbox {
+  padding: 5px 20px;
+  min-width: auto;
+  width: auto;
+}
+.seleccion-mes-menu {
+  padding: 0;
+  min-width: auto;
+  width: auto;
+}
+
+.seleccion-mes-menu .dropdown-item {
+  padding: 5px 20px;
+  white-space: nowrap;
+}
