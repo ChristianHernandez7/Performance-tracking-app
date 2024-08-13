@@ -1,3 +1,26 @@
+/**
+ * Feature1:Distinción de estudiantes propensos a abandonar la asignatura
+     Como docente
+     Quiero identificar automáticamente aquellos estudiantes con posible tasa de abandono
+     Para decidir si notificar a bienestar estudiantil sobre un posible abandono.
+ 
+  * Grupo 3:
+     Anrrango Erika -> Desarrolladora FrontEnd
+     Hernández Christian -> Desarrollador BackEnd
+     Pillajo Edwin -> Documentación
+
+  * Documentación asociada:
+     Mapa navegacional y wireframe (pantalla Asistencia, Notificación): 
+     https://www.figma.com/design/ihvX1EY7yVl6tCnNEyzsZQ/DCU?node-id=0-1
+     Tokens de diseño: 
+     https://www.figma.com/design/ihvX1EY7yVl6tCnNEyzsZQ/DCU?node-id=116-2
+
+  * Entidades con las que se relaciona desde el backend
+     Estudiante y Asitencia
+
+  * Descripción corta:
+     Visualizar a los estudiantes próximos a salir de la asignatura dada su tasa de asistencia mensual.
+ */
 import React from "react";
 import { Button, Modal } from "react-bootstrap";
 

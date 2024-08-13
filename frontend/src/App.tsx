@@ -1,5 +1,4 @@
 import { useState } from 'react';
-
 import Asignatura from './components/Asignatura';
 import Cursos from './pages/Cursos';
 import Capacitaciones from './pages/Capacitaciones';
@@ -9,14 +8,10 @@ import Estudiantes from './pages/Estudiantes';
 import EstudiantesCandidatos from './pages/EstudiantesCandidatos';
 import { useContextoGlobal } from './ContextoGlobal';
 import PerfilProfesor from './pages/Profesor';
-import { Profesor as TipoProfesor } from './types/Capacitaciones';
 import TablaProfesores from './components/TablaProfesores';
 import SeguimientoSilabo from './components/SeguimientoSilabo';
 import RegistroAvance from './components/RegistroAvance';
-import RegistroAsistencia from './components/RegistroAsistencia';
-import Asistencia from './pages/Asistencia';
-
-
+import EstudiantesDesertores from './pages/EstudiantesDesertores';
 
 function App() {
   const { paginaActual, rol, profesor } = useContextoGlobal()
@@ -35,7 +30,7 @@ function App() {
       return [
         <Estudiantes id="Estudiantes" />,
         <EstudiantesCandidatos id="Estudiantes candidatos" />,
-        <RegistroAsistencia id="Registo Asistencia" />
+        <EstudiantesDesertores id="Estudiantes desertores" isSemesterClosed={isSemesterClosed}/>
       ];
     } else {
       return [
@@ -46,7 +41,7 @@ function App() {
           < RegistroAvance id = "Seguimiento sílabo" handlePageChange ={ handlePageChange} />
         ),
         <RegistroNotas id="Registro notas" />,
-        <Asistencia id="Asistencia" />
+        <EstudiantesDesertores id="Estudiantes desertores" isSemesterClosed={isSemesterClosed}/>
       ];
     }
   };
