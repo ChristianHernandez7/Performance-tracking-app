@@ -2,8 +2,9 @@
 # Utilizado para Feature 1
 # Creado por Christian Hernández
 
-class EstudianteControlAsistencia:
-    """ EstudianteControlAsistencia
+
+class Estudiante_:
+    """ Estudiante
 
             Clase auxiliar para recopilar solo la información necesaria del estudiante.
 
@@ -17,8 +18,9 @@ class EstudianteControlAsistencia:
         self.nombre = nombre
         self.numero_incidencias = numero_incidencias
 
-class AsignaturaControlAsistencia:
-    """ AsignaturaControlAsistencia
+
+class Asignatura_:
+    """ Asignatura
 
                 Clase auxiliar para recopilar solo la información necesaria de la asignatura.
 
@@ -41,8 +43,8 @@ class AsignaturaControlAsistencia:
         self.total_comprende = total_comprende
 
 
-class ControlAsistencia:
-    """ AsignaturaControlAsistencia
+class Asistencia_:
+    """ Asistencia
 
                     Clase auxiliar para recopilar solo la información necesaria de la asistencia.
 

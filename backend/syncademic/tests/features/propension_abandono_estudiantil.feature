@@ -3,7 +3,7 @@
 
 # FEATURE  2
 # Creado por: Erika Anrrango, Christian Hernández, Edwin Pillajo
-
+# Ver página 18 de la documentación
 
 Característica: Distinción de estudiantes propensos a abandonar la asignatura
   Como docente

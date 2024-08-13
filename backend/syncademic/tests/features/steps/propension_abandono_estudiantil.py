@@ -1,6 +1,6 @@
 from behave import *
 from faker import Faker
-from syncademic.utils import EstudianteControlAsistencia, AsignaturaControlAsistencia, ControlAsistencia
+from syncademic.utils import Estudiante_, Asignatura_, Asistencia_
 
 use_step_matcher("parse")
 
@@ -11,17 +11,17 @@ fake = Faker("es")
 def step_impl(context, tasa_asistencia):
     context.tasa_asistencia = float(tasa_asistencia)
     context.estudiantes = [
-        EstudianteControlAsistencia(id_estudiante=1, nombre=fake.name(), numero_incidencias=0),
-        EstudianteControlAsistencia(id_estudiante=2, nombre=fake.name(), numero_incidencias=0),
+        Estudiante_(id_estudiante=1, nombre=fake.name(), numero_incidencias=0),
+        Estudiante_(id_estudiante=2, nombre=fake.name(), numero_incidencias=0),
     ]
-    context.asignatura = AsignaturaControlAsistencia(
+    context.asignatura = Asignatura_(
         id_asignatura=1, nombre='Matemáticas', area='Ciencias', nota_minima=5,
         total_clases=20, total_inscritos=2, total_comprende=2
     )
     context.asistencias = []
     for estudiante in context.estudiantes:
         for semana in range(1, 5):  # Assuming 4 weeks in a month
-            asistencia = ControlAsistencia(
+            asistencia = Asistencia_(
                 estudiante=estudiante,
                 asignatura=context.asignatura,
                 semana=semana,
@@ -35,7 +35,7 @@ def step_impl(context, tasa_asistencia):
 def step_impl(context, minimo, maximo):
     context.minimo = float(minimo)
     context.maximo = float(maximo)
-    context.estudiantes_en_riesgo = ControlAsistencia.obtener_estudiantes_en_riesgo(context.estudiantes, context.asistencias, 1)
+    context.estudiantes_en_riesgo = Asistencia_.obtener_estudiantes_en_riesgo(context.estudiantes, context.asistencias, 1)
 
 
 @step("se marca al estudiante en riesgo {riesgo} de abandono alertando al docente")
