@@ -23,6 +23,7 @@
 .abandono-contenedor{
   padding-left: 6em;
   padding-right: 6em;
+  padding-top: 4em;
 }
 .mensaje-notificar, .no-opcion, .si-opcion{
  width: 100%;
